@@ -1,0 +1,235 @@
+/*
+PROGRAM SISTEM ANTRIAN BANK
+KELOMPOK 10 :
+MUHAMAD SURYA ALFRIANA	(201724020)
+NOUVAL MUHAMMAD JORDAN	(201724023)
+Compiler : DevC++
+*/
+
+#include<stdio.h>
+#include<stdlib.h>
+#include<conio.h>
+
+int main(){
+	int i,j,k,bil,antrianTL,antrianCS;
+	char aksi,CSnama[50][20],CStelepon[50][20],TLnama[50][20],TLtelepon[50][20];
+	
+	i=0,j=0,antrianTL=0,antrianCS=0;
+	
+	while(bil!=999){
+		
+		
+		printf("\n===================================================\n");
+		printf("\tSELAMAT DATANG DI SISTEM ANTRIAN BANK\n");
+		printf("===================================================\n");
+		printf("\t\nMasuk Sebagai :\n\n");
+		printf("\t1. NASABAH\n");
+		printf("\t2. PETUGAS CUSTOMER SERVICE\n");
+		printf("\t3. PETUGAS TELLER\n\n");
+		printf("\t999. Keluar Aplikasi\n\n");
+		printf("---------------------------------------------------\n");
+		printf("\t\nPilihan :  ");
+		scanf("%d",&bil);
+		if(bil==999){
+			break;
+		}
+		system ("cls");
+		
+		switch(bil){
+			
+				case 1 : {
+					
+					while(bil!=4){
+					printf("\n===================================================\n");
+					printf("\t\tMENU ANTRIAN NASABAH\n");
+					printf("===================================================\n");
+					printf("\t\nPilih layanan yang akan anda tuju :\n\n");
+					printf("\t1. AMBIL ANTRIAN CUSTOMER SERVICE\n");
+					printf("\t2. AMBIL ANTRIAN TELLER\n");
+					printf("\t3. LIHAT ANTRIAN\n");
+					printf("\t4. KELUAR\n\n");
+					printf("---------------------------------------------------\n");
+					printf("\t\nPilihan :  ");
+					scanf("%d",&bil);
+					system ("cls");
+					
+					switch(bil){
+						case 1 : {
+							
+							i=i+1;
+							printf("\n===================================================\n");
+							printf("\t\tMENU ANTRIAN CS\n");
+							printf("===================================================\n");
+							printf("\t\nIdentitas Anda\n");
+							printf("\nNama : ");
+							fflush(stdin);
+							scanf("%[^\n]s",&CSnama[i]);
+							printf("No. Telepon : ");
+							scanf("%s",&CStelepon[i]);
+							printf("\n\nLanjutkan? <y/n> : ");												
+							scanf("%s",&aksi);
+							if(aksi=='y'){
+								printf("\n\n===========================");
+								printf("\n  NOMOR ANTRIAN ANDA : %d ",i);
+								printf("\n===========================");								
+							}
+							printf("\n\n\n\nPress Any Key to continue...");
+							while(!kbhit());
+							system ("cls");
+							break;
+						}
+						
+						case 2 : {
+							
+							j=j+1;
+							printf("\n===================================================\n");
+							printf("\t\tMENU ANTRIAN TELLER\n");
+							printf("===================================================\n");
+							printf("\t\nIdentitas Anda\n");
+							printf("\nNama : ");
+							fflush(stdin);
+							scanf("%[^\n]s",&TLnama[j]);
+							printf("No. Telepon : ");
+							scanf("%s",TLtelepon[j]);
+							printf("\n\nLanjutkan? <y/n> : ");												
+							scanf("%s",&aksi);
+							if(aksi=='y'){
+								printf("\n\n===========================");
+								printf("\n  NOMOR ANTRIAN ANDA : %d ",j);
+								printf("\n===========================");								
+							}
+							printf("\n\n\n\nPress Any Key to continue...");
+							while(!kbhit());
+							system ("cls");
+							break;
+						}
+						
+						case 3 : {
+							
+							while(bil!=0){
+							printf("\n===================================================\n");
+							printf("\t\tANTRIAN SAAT INI\n");
+							printf("===================================================\n");
+							printf("      -----------------------------------\n");
+							printf("\tPANGGILAN NO ANTRIAN CS     : %d\n",antrianCS);	
+							printf("      -----------------------------------\n");
+							printf("\tPANGGILAN NO ANTRIAN TELLER : %d\n",antrianTL);
+							printf("      -----------------------------------\n");						
+							printf("\t\nLihat Antrian\n\n");
+							printf("\t1. ANTRIAN CUSTOMER SERVICE\n");
+							printf("\t2. ANTRIAN TELLER\n");
+							printf("\t0. Kembali\n\n");
+							printf("---------------------------------------------------\n");
+							printf("\t\nPilihan :  ");
+							scanf("%d",&bil);
+							fflush(stdin);
+							system ("cls");
+			
+							switch(bil){
+								case 1 : {
+									printf("\n===================================================\n");
+									printf("\t\tANTRIAN CUSTOMER SERVICE\n");
+									printf("===================================================\n");
+									printf("\t\nNO. ANTRIAN YANG SEDANG DILAYANI : %d\n\n",antrianCS);
+									printf("Antrian Ke\tNama\n");
+									for(k=1;k<=i;k++){
+										printf("     -----------------------------------------\n");
+										printf("\t%d",k);
+										printf("\t%s\n",CSnama[k]);
+										printf("     -----------------------------------------\n");
+									}
+									printf("\n\n\n\nPress Any Key to continue...");
+									while(!kbhit());
+									system ("cls");
+									break;
+								}
+								case 2 : {
+									printf("\n===================================================\n");
+									printf("\t\t\tANTRIAN TELLER\n");
+									printf("===================================================\n");
+									printf("Antrian Ke\t\tNama\n");
+									for(k=1;k<=j;k++){
+										printf("     -----------------------------------------\n");
+										printf("\t%d",k);
+										printf("\t\t%s\n",TLnama[k]);
+										printf("     -----------------------------------------\n");
+									}
+									printf("\n\n\n\nPress Any Key to continue...");
+									while(!kbhit());
+									system ("cls");
+									break;
+								}
+							}
+							}
+						break;
+						}
+					}
+					}
+					break;
+				}
+					
+				case 2 : {
+					printf("\n===================================================\n");
+					printf("\t\tMENU CUSTOMER SERVICE\n");
+					printf("===================================================\n");
+					printf("\t\nUntuk melanjutkan masukkan password CS \n\n");
+					printf("PASSWORD : ");
+					scanf("%d",&bil);	
+					system ("cls");
+					if(bil==222){
+						printf("\n===================================================\n");
+						printf("\t\tMENU CUSTOMER SERVICE\n");
+						printf("===================================================\n");
+						printf("\t\t\nJumlah Antrian CS : %d\n",i);
+						printf("\tAntrian saat ini : Antrian ke-%d\n\n",antrianCS);
+						printf("\t1. PANGGIL ANTRIAN\n");
+						printf("\t2. SUDAHI ANTRIAN\n");
+						printf("\t3. RESET ANTRIAN\n");
+						printf("\t4. KELUAR\n\n");
+						printf("---------------------------------------------------\n");
+						printf("\t\nPilihan :  ");
+						scanf("%d",&bil);
+						system ("cls");
+					}
+					break;
+				}
+				
+				case 3 : {
+					printf("\n===================================================\n");
+					printf("\t\t   MENU TELLER\n");
+					printf("===================================================\n");
+					printf("\t\nUntuk melanjutkan masukkan password Teller \n\n");
+					printf("PASSWORD : ");
+					scanf("%d",&bil);	
+					system ("cls");
+					if(bil==333){
+						printf("\n===================================================\n");
+						printf("\t\t   MENU TELLER\n");
+						printf("===================================================\n");
+						printf("\t\nJumlah Antrian CS : %d\n",j);
+						printf("\tAntrian saat ini : Antrian ke-%d\n\n",antrianTL);
+						printf("\t1. PANGGIL ANTRIAN\n");
+						printf("\t2. SUDAHI ANTRIAN\n");
+						printf("\t3. RESET ANTRIAN\n");
+						printf("\t4. KELUAR\n\n");
+						printf("---------------------------------------------------\n");
+						printf("\t\nPilihan :  ");
+						scanf("%d",&bil);
+						system ("cls");
+					}
+					break;
+				}
+				
+				default: printf("\nMasukkan anda salah!!\n");
+				printf("\nPress Any Key to continue...");
+            	fflush(stdin);
+            	while(!kbhit());
+            	system ("cls");
+        }
+            	
+	}
+	
+	return 0;		
+}
+
+
