@@ -6,13 +6,16 @@ NOUVAL MUHAMMAD JORDAN	(201724023)
 Compiler : DevC++
 */
 
+//LIBRARY
 #include<stdio.h>
 #include<stdlib.h>
 #include<conio.h>
 #include<string.h>
 
 int main(){
-	int i,j,k,m,n,p,q,bil,antrianTL,antrianCS;
+	
+	//KAMUS DATA
+	int i,j,k,m,n,p,bil,antrianTL,antrianCS;
 	char aksi,CSnama[20][50],CStelepon[20][50],TLnama[20][50],TLtelepon[20][50];
 	char reset[]="";
 	char nama[30],telepon[30],password[10];
@@ -22,9 +25,11 @@ int main(){
 	strcpy(TLnama[0],reset);
 	strcpy(TLtelepon[0],reset);
 		
+		
+	//PROGRAM
 	while(bil!=999){
 		
-		
+		//MENU LOGIN USER
 		printf("\n===================================================\n");
 		printf("\tSELAMAT DATANG DI SISTEM ANTRIAN BANK\n");
 		printf("===================================================\n");
@@ -44,7 +49,7 @@ int main(){
 		switch(bil){
 			
 				case 1 : {
-					
+					//MENU USER NASABAH
 					while(bil!=4){
 					printf("\n===================================================\n");
 					printf("\t\tMENU ANTRIAN NASABAH\n");
@@ -61,7 +66,7 @@ int main(){
 					
 					switch(bil){
 						case 1 : {							
-							
+							//AMBIL ANTRIAN CS
 							printf("\n===================================================\n");
 							printf("\t\tMENU ANTRIAN CS\n");
 							printf("===================================================\n");
@@ -89,7 +94,7 @@ int main(){
 						}
 						
 						case 2 : {							
-							
+							//AMBIL ANTRIAN TELLER
 							printf("\n===================================================\n");
 							printf("\t\tMENU ANTRIAN TELLER\n");
 							printf("===================================================\n");
@@ -116,7 +121,7 @@ int main(){
 							system ("cls");
 							break;
 						}
-						
+						//MENU LIHAT ANTRIAN
 						case 3 : {
 							bil=0;
 							while(bil!=3){
@@ -139,7 +144,9 @@ int main(){
 							system ("cls");
 			
 							switch(bil){
+								
 								case 1 : {
+									//LIST ANTRIAN CS
 									printf("\n===================================================\n");
 									printf("\t\tANTRIAN CUSTOMER SERVICE\n");
 									printf("===================================================\n");
@@ -157,6 +164,7 @@ int main(){
 									break;
 								}
 								case 2 : {
+									//LIST ANTRIAN TELLER
 									printf("\n===================================================\n");
 									printf("\t\t   ANTRIAN TELLER\n");
 									printf("===================================================\n");
@@ -183,6 +191,8 @@ int main(){
 				}
 					
 				case 2 : {
+					//MENU USER CUSTOMER SERVICE
+					//login
 					printf("\n===================================================\n");
 					printf("\t\tMENU CUSTOMER SERVICE\n");
 					printf("===================================================\n");
@@ -191,6 +201,7 @@ int main(){
 					scanf("%s",&password);	
 					system ("cls");
 					fflush(stdin);
+					//MENU CS
 					if(strcmp(password,"222")==0){
 						while(bil!=4){
 							printf("\n===================================================\n");
@@ -216,8 +227,9 @@ int main(){
 							system ("cls");
 							
 							switch(bil){
-							
+								
 								case 1 : {
+									//PANGGIL ANTRIAN CS
 									if(n<i){
 										antrianCS=antrianCS+1;
 										n=n+1;																							
@@ -232,7 +244,8 @@ int main(){
 									break;
 								}
 								
-								case 2 : {									
+								case 2 : {	
+								//LIST ANTRIAN	CS							
 									while(bil!=0){									
 										printf("\n===================================================\n");
 										printf("\t\t  LIST ANTRIAN CUSTOMER SERVICE\n");
@@ -250,7 +263,8 @@ int main(){
 										printf("\n\n---------------------------------------------------\n");
 										printf("\t\nPilihan :  ");
 										scanf("%d",&bil);
-										fflush(stdin);										
+										fflush(stdin);		
+										//HAPUS ANTRIAN	CS							
 										if(bil==1){
 											if(i>0){
 												printf("\n\tNo Antrian Yang Akan Dihapus\n");
@@ -275,7 +289,8 @@ int main(){
 									break;
 								}
 								
-								case 3 : {									
+								case 3 : {	
+									//RESET ANTRIAN	CS							
 									system ("cls");
 									printf("\n\n\n\tYakin Untuk Me-Reset Antrian? <y/n> ");
 									scanf("%s",&aksi);
@@ -297,6 +312,7 @@ int main(){
 							}
 						}
 					}
+					//Password salah
 					else if(strcmp(password,"222")!=0){
 						system ("cls");
 						printf("\n\n\n\t!!!  PASSWORD SALAH  !!!");
@@ -308,6 +324,8 @@ int main(){
 				}
 				
 				case 3 : {
+					//MENU USER TELLER
+					//login
 					printf("\n===================================================\n");
 					printf("\t\tMENU TELLER\n");
 					printf("===================================================\n");
@@ -316,6 +334,7 @@ int main(){
 					scanf("%s",&password);	
 					system ("cls");
 					fflush(stdin);
+					//MENU TELLER
 					if(strcmp(password,"333")==0){
 						while(bil!=4){
 							printf("\n===================================================\n");
@@ -343,6 +362,7 @@ int main(){
 							switch(bil){
 							
 								case 1 : {
+									//PANGGIL ANTRIAN TL
 									if(m<j){
 										antrianTL=antrianTL+1;
 										m=m+1;																							
@@ -357,7 +377,8 @@ int main(){
 									break;
 								}
 								
-								case 2 : {									
+								case 2 : {	
+									//LIST ANTRIAN	TL							
 									while(bil!=0){									
 										printf("\n===================================================\n");
 										printf("\t\tLIST ANTRIAN TELLER\n");
@@ -375,7 +396,8 @@ int main(){
 										printf("\n\n---------------------------------------------------\n");
 										printf("\t\nPilihan :  ");
 										scanf("%d",&bil);
-										fflush(stdin);										
+										fflush(stdin);	
+										//HAPUS ANTRIAN	TL								
 										if(bil==1){
 											if(j>0){
 												printf("\n\tNo Antrian Yang Akan Dihapus\n");
@@ -400,7 +422,8 @@ int main(){
 									break;
 								}
 								
-								case 3 : {									
+								case 3 : {	
+								 	//RESET ANTRIAN TL								
 									system ("cls");
 									printf("\n\n\n\tYakin Untuk Me-Reset Antrian? <y/n> ");
 									scanf("%s",&aksi);
@@ -422,6 +445,7 @@ int main(){
 							}
 						}
 					}
+					//password salah
 					else if(strcmp(password,"333")!=0){
 						system ("cls");
 						printf("\n\n\n\t!!!  PASSWORD SALAH  !!!");
@@ -437,7 +461,10 @@ int main(){
 	system ("cls");
 	printf("\n\n\n\tDibuat oleh :\n");
 	printf("\n\tM.Surya.Afriana\n\tNouval.M.Jordan\n\n\n");
+	printf("\n\n\nPress Any Key to Exit...");
+	while(!kbhit());
 	return 0;		
+	//END PROGRAM
 }
 
 
