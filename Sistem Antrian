@@ -15,11 +15,13 @@ Compiler : DevC++
 int main(){
 	
 	//KAMUS DATA
-	int i,j,k,m,n,p,bil1,bil,bil2,antrianTL,antrianCS;
+	int i,j,k,m,n,p,bil,bil1,bil2,antrianTL,antrianCS;
 	char aksi,CSnama[20][50],CStelepon[20][50],TLnama[20][50],TLtelepon[20][50];
 	char reset[]="";
 	char nama[30],telepon[30],password[15],username[15];
-	i=0,j=0,n=0,m=0;antrianTL=0,antrianCS=0;
+	
+	//Inisialisasi
+	i=19,j=0,n=0,m=0;antrianTL=0,antrianCS=0;
 	strcpy(CSnama[0],reset);
 	strcpy(CStelepon[0],reset);
 	strcpy(TLnama[0],reset);
@@ -46,6 +48,7 @@ int main(){
 		scanf("%d",&bil1);
 		system ("cls");
 		//LOGIN
+		bil=0;
 		if(bil1==1){
 			printf("\n===================================================\n");
 			printf("          SELAMAT DATANG DI SISTEM ANTRIAN\n");
@@ -93,7 +96,7 @@ int main(){
 				bil=0;
 			}
 		}	
-		else if(bil1==2)	{
+		else if(bil1==2){
 			printf("\n\n\n\tDibuat oleh :\n");
 			printf("\n\tM.Surya.Afriana\n\tNouval.M.Jordan\n\n\n");
 			printf("\n\n\nPress Any Key to Exit...");
@@ -139,6 +142,28 @@ int main(){
 					switch(bil){
 						case 1 : {							
 							//AMBIL ANTRIAN CS
+							if(i==20&&i-n==0){
+								system ("cls");
+	 							printf("\n\n\tAntrian Sudah Mencapai Batas Harian Customer Service");
+	 							printf("\n\n\tApakah Ingin Memulai Ulang Kembali Antrian? <y/n> : ");
+	 							scanf("%s",&aksi);
+								if(aksi=='y'){
+									for(p=0;p<=i;p++){
+										strcpy(CSnama[p],reset);
+										strcpy(CStelepon[p],reset);																		
+									}
+									i=0,n=0,antrianCS=0;
+										printf("\n\n\n\t!!!  BERHASIL  !!!");
+										printf("\n\n\nPress Any Key to continue...");
+										while(!kbhit()); 
+										system ("cls");									
+										break;								
+								}	
+								else {
+									system ("cls");
+									break;
+								}													
+							}
 							while(i<20){
 								printf("\n===================================================\n");
 								printf("                 AMBIL ANTRIAN CS \n");
@@ -151,6 +176,7 @@ int main(){
 								scanf("%s",&telepon);
 								printf("\n\nLanjutkan? <y/n> : ");												
 								scanf("%s",&aksi);
+								fflush(stdin);
 								if(aksi=='y'){
 									i=i+1;
 									strcpy(CSnama[i],nama);
@@ -165,27 +191,49 @@ int main(){
 								break;								
 							}
 							system ("cls");
-							printf("\n\n\t!! ANTRIAN SUDAH PENUH !!");
+							printf("\n\n\t!! ANTRIAN SUDAH MENCAPAI BATAS HARIAN !!");
 							printf("\n\n---------------------------------------------------\n");
 							printf("\nPress Any Key to continue...");
 							fflush(stdin);
 							while(!kbhit());
-							system ("cls");
-							system ("cls");
+							system ("cls");	
+							bil=0;						
 							break;
 						}
 						
 						case 2 : {							
 							//AMBIL ANTRIAN TELLER
+							if(j==20&&j-m==0){
+								system ("cls");
+	 							printf("\n\n\tAntrian Sudah Mencapai Batas Harian Teller");
+	 							printf("\n\n\tApakah Ingin Memulai Ulang Kembali Antrian? <y/n> : ");
+	 							scanf("%s",&aksi);
+								if(aksi=='y'){
+									for(k=0;k<=j;k++){
+										strcpy(TLnama[k],reset);
+										strcpy(TLtelepon[k],reset);																		
+									}
+									j=0,m=0,antrianTL=0;
+										printf("\n\n\n\t!!!  BERHASIL  !!!");
+										printf("\n\n\nPress Any Key to continue...");
+										while(!kbhit()); 
+										system ("cls");
+										break;								
+								}	
+								else {
+									system ("cls");
+									break;
+								}
+							}
 							while(j<20){
 								printf("\n===================================================\n");
 								printf("                AMBIL ANTRIAN TELLER\n");
 								printf("===================================================\n");
 								printf("\t\nIdentitas Anda\n");
-								printf("\nNama        : ");
+								printf("\n\tNama        : ");
 								fflush(stdin);
 								scanf("%[^\n]s",&nama);
-									printf("No. Telepon : ");
+								printf("\tNo. Telepon : ");
 								scanf("%s",&telepon);
 								printf("\n\nLanjutkan? <y/n> : ");												
 								scanf("%s",&aksi);
@@ -205,19 +253,20 @@ int main(){
 								break;								
 							}
 							system ("cls");
-							printf("\n\n\t!! ANTRIAN SUDAH PENUH !!");
+							printf("\n\n\t!! ANTRIAN SUDAH MENCAPAI BATAS HARIAN !!");
 							printf("\n\n---------------------------------------------------\n");
 							printf("\nPress Any Key to continue...");
 							fflush(stdin);
 							while(!kbhit());
 							system ("cls");
-							system ("cls");
+							bil=0;
 							break;
 						}
+					
 						//MENU LIHAT ANTRIAN
 						case 3 : {
 							bil=0;
-							while(bil!=4){
+							while(bil!=3){
 							printf("\n===================================================\n");
 							printf("              MENU PETUGAS ANTRIAN\n");
 							printf("===================================================\n\n");
@@ -230,8 +279,7 @@ int main(){
 							printf("\t\nLihat Antrian\n\n");
 							printf("\t1. ANTRIAN CUSTOMER SERVICE\n");
 							printf("\t2. ANTRIAN TELLER\n");
-							printf("\t3. RESET SEMUA ANTRIAN\n");
-							printf("\t4. Kembali\n\n");
+							printf("\t3. Kembali\n\n");
 							printf("---------------------------------------------------\n");
 							printf("\t\nPilihan :  ");
 							scanf("%d",&bil);
@@ -241,171 +289,46 @@ int main(){
 							switch(bil){
 								
 								case 1 : {
-									//LIST ANTRIAN CS
-									bil=0;
-									while(bil!=3){									
-										printf("\n===================================================\n");
-										printf("\t\t  LIST ANTRIAN CUSTOMER SERVICE\n");
-										printf("===================================================\n");									
-										printf("Antrian Ke\tNama\n");
-										for(k=1;k<=i;k++){
-											printf("     -----------------------------------------\n");
-											printf("\t%d",k);
-											printf("\t%s\n",CSnama[k]);
-											printf("     -----------------------------------------\n");
-										}
-										printf("\n\n\nPerintah :");
-										printf("\n\t1. HAPUS ANTRIAN");
-										printf("\n\t2. RESET ANTRIAN");
-										printf("\n\t3. KEMBALI");	
-										printf("\n\n---------------------------------------------------\n");
-										printf("\t\nPilihan :  ");
-										scanf("%d",&bil);
-										fflush(stdin);		
-										//HAPUS ANTRIAN	CS	
-																
-										if(bil==1){
-											if(i>0){
-												printf("\n\tNo Antrian Yang Akan Dihapus\n");
-												printf("\t\n\tPilihan :  ");
-												scanf("%d",&bil2);
-												if(bil2<=i){																					
-													for(p=bil2;p<i;p++){
-														strcpy(CSnama[p],CSnama[p+1]);
-														strcpy(CStelepon[p],CStelepon[p+1]);
-													}
-													strcpy(CSnama[i],reset);
-													if(bil2<=n){
-														n=n-1;	
-														antrianCS=antrianCS-1;										
-													}												
-													i=i-1;											
-													fflush(stdin);
-											 	}
-											}
-											system ("cls");	
-										}
-										else if(bil==2){
-											system ("cls");
-											printf("\n\n\n\tYakin Untuk Me-Reset Antrian? <y/n> ");
-											scanf("%s",&aksi);
-											system ("cls");
-											if(aksi=='y'){
-												for(k=0;k<=i;k++){
-												strcpy(CSnama[k],reset);
-												strcpy(CStelepon[k],reset);																		
-											}
-											i=0,n=0,antrianCS=0;
-											printf("\n\n\n\t!!!  ANTRIAN DI-RESET  !!!");
-											printf("\n\n\nPress Any Key to continue...");
-											while(!kbhit()); 
-											system ("cls");
-											}
-										}										
-										system ("cls");																
-									}		
-									bil=0;							
+									//LIST ANTRIAN CS																
+									printf("\n===================================================\n");
+									printf("          LIST ANTRIAN CUSTOMER SERVICE\n");
+									printf("===================================================\n");									
+									printf("Antrian Ke\tNama\n");
+									for(k=n+1;k<=i;k++){
+										printf("     -----------------------------------------\n");
+										printf("\t%d",k);
+										printf("\t%s\n",CSnama[k]);
+										printf("     -----------------------------------------\n");
+									}
+									printf("\n\n\nPress Any Key to continue...");
+									while(!kbhit()); 
 									system ("cls");
 									break;
 								}
 								case 2 : {
-									//LIST ANTRIAN TELLER
-									bil=0;
-									while(bil!=3){									
-										printf("\n===================================================\n");
-										printf("               LIST ANTRIAN TELLER\n");
-										printf("===================================================\n");									
-										printf("Antrian Ke\tNama\n");
-										for(k=1;k<=j;k++){
-											printf("     -----------------------------------------\n");
-											printf("\t%d",k);
-											printf("\t%s\n",TLnama[k]);
-											printf("     -----------------------------------------\n");
-										}
-										printf("\n\n\nPerintah :");
-										printf("\n\t1. HAPUS ANTRIAN");
-										printf("\n\t2. RESET ANTRIAN");
-										printf("\n\t3. KEMBALI");	
-										printf("\n\n---------------------------------------------------\n");
-										printf("\t\nPilihan :  ");
-										scanf("%d",&bil);
-										fflush(stdin);		
-										//HAPUS ANTRIAN	Teller	
-																
-										if(bil==1){
-											if(j>0){
-												printf("\n\tNo Antrian Yang Akan Dihapus\n");
-												printf("\t\n\tPilihan :  ");
-												scanf("%d",&bil2);
-												if(bil2<=j){											
-													for(p=bil2;p<j;p++){
-														strcpy(TLnama[p],TLnama[p+1]);
-														strcpy(TLtelepon[p],TLtelepon[p+1]);
-													}
-													strcpy(TLnama[j],reset);
-													if(bil2<=m){
-														m=m-1;	
-														antrianTL=antrianTL-1;										
-													}												
-													j=j-1;											
-													fflush(stdin);
-												}
-											}
-											system ("cls");	
-										}
-										else if(bil==2){
-											system ("cls");
-											printf("\n\n\n\tYakin Untuk Me-Reset Antrian? <y/n> ");
-											scanf("%s",&aksi);
-											system ("cls");
-											if(aksi=='y'){
-												for(k=0;k<=j;k++){
-												strcpy(TLnama[k],reset);
-												strcpy(TLtelepon[k],reset);																		
-											}
-											j=0,m=0,antrianTL=0;
-											printf("\n\n\n\t!!!  ANTRIAN DI-RESET  !!!");
-											printf("\n\n\nPress Any Key to continue...");
-											while(!kbhit()); 
-											system ("cls");
-											}
-										}										
-										system ("cls");																
-									}				
-									bil=0;					
-									system ("cls");
-									break;
-								}
-								
-								case 3 : {
-									
-									system ("cls");
-									printf("\n\n\n\tYakin Untuk Me-Reset Semua Antrian Yang Ada? <y/n> ");
-									scanf("%s",&aksi);
-									system ("cls");
-									if(aksi=='y'){
-										for(k=0;k<=j;k++){
-										strcpy(TLnama[k],reset);
-										strcpy(TLtelepon[k],reset);																		
+									//LIST ANTRIAN TELLER																		
+									printf("\n===================================================\n");
+									printf("               LIST ANTRIAN TELLER\n");
+									printf("===================================================\n");									
+									printf("Antrian Ke\tNama\n");
+									for(k=m+1;k<=j;k++){
+										printf("     -----------------------------------------\n");
+										printf("\t%d",k);
+										printf("\t%s\n",TLnama[k]);
+										printf("     -----------------------------------------\n");
 									}
-									j=0,m=0,antrianTL=0;
-									for(k=0;k<=i;k++){
-										strcpy(CSnama[k],reset);
-										strcpy(CStelepon[k],reset);																		
-									}
-									i=0,n=0,antrianCS=0;
-									printf("\n\n\n\t!!!  SEMUA ANTRIAN DI-RESET  !!!");
 									printf("\n\n\nPress Any Key to continue...");
 									while(!kbhit()); 
 									system ("cls");
-									}
 									break;
 								}
+														
 							}
-							}
+							}//endwhile
+							
 							bil=0;
-						break;
-						}
+							break;
+						}//endswitch
 					}
 					}
 					break;
@@ -413,7 +336,7 @@ int main(){
 					
 				case 2 : {
 					//MENU USER CUSTOMER SERVICE
-						while(bil!=4){
+						while(bil!=3){
 							printf("\n===================================================\n");
 							printf("\t\tMENU CUSTOMER SERVICE\n");
 							printf("===================================================\n");
@@ -427,9 +350,8 @@ int main(){
 							printf("\tSisa Antrian CS  : %d\n",i-n);
 							printf("\t-----------------------\n\n");
 							printf("\t1. PANGGIL ANTRIAN\n");	
-							printf("\t2. LIST ANTRIAN\n");					
-							printf("\t3. RESET ANTRIAN\n");
-							printf("\t4. KELUAR\n\n");
+							printf("\t2. LIST ANTRIAN\n");
+							printf("\t3. KELUAR\n\n");
 							printf("---------------------------------------------------\n");
 							printf("\t\nPilihan :  ");
 							scanf("%d",&bil);
@@ -443,7 +365,13 @@ int main(){
 									if(n<i){
 										antrianCS=antrianCS+1;
 										n=n+1;																							
-									}									
+									}			
+									else if(n==20){
+										printf("\n\n\t!! ANTRIAN SUDAH MENCAPAI BATAS HARIAN !!");
+										printf("\n\n\nPress Any Key to continue...");
+										while(!kbhit());            						
+            							system ("cls");
+									}							
 									else if(n>=i){
 										printf("\n\n\n\t!!!  BELUM ADA ANTRIAN  !!!");
 										printf("\n\n\nPress Any Key to continue...");
@@ -454,72 +382,20 @@ int main(){
 									break;
 								}
 								
-								case 2 : {	
-								//LIST ANTRIAN	CS	
-									bil=0;						
-									while(bil!=2){									
-										printf("\n===================================================\n");
-										printf("\t\t  LIST ANTRIAN CUSTOMER SERVICE\n");
-										printf("===================================================\n");									
-										printf("Antrian Ke\tNama\n");
-										for(k=1;k<=i;k++){
-											printf("     -----------------------------------------\n");
-											printf("\t%d",k);
-											printf("\t%s\n",CSnama[k]);
-											printf("     -----------------------------------------\n");
-										}
-										printf("\n\n\nPerintah :");
-										printf("\n\t1. HAPUS ANTRIAN");
-										printf("\n\t2. KEMBALI");	
-										printf("\n\n---------------------------------------------------\n");
-										printf("\t\nPilihan :  ");
-										scanf("%d",&bil);
-										fflush(stdin);		
-										//HAPUS ANTRIAN	CS							
-										if(bil==1){
-											if(i>0){
-												printf("\n\tNo Antrian Yang Akan Dihapus\n");
-												printf("\t\n\tPilihan :  ");
-												scanf("%d",&bil2);
-												if(bil2<=i){											
-													for(p=bil2;p<i;p++){
-														strcpy(CSnama[p],CSnama[p+1]);
-														strcpy(CStelepon[p],CStelepon[p+1]);
-													}
-													strcpy(CSnama[i],reset);
-													if(bil2<=n){
-														n=n-1;	
-														antrianCS=antrianCS-1;										
-													}												
-													i=i-1;											
-													fflush(stdin);		
-												}
-											}
-											system ("cls");	
-										}																	
-									}		
-									bil=0;							
-									system ("cls");	
-									break;
-								}
-								
-								case 3 : {	
-									//RESET ANTRIAN	CS							
-									system ("cls");
-									printf("\n\n\n\tYakin Untuk Me-Reset Antrian? <y/n> ");
-									scanf("%s",&aksi);
-									system ("cls");
-									if(aksi=='y'){
-										for(k=0;k<=i;k++){
-										strcpy(CSnama[k],reset);
-										strcpy(CStelepon[k],reset);																		
+								case 2 : {		
+									//LIST ANTRIAN CS																
+									printf("\n===================================================\n");
+									printf("          LIST ANTRIAN CUSTOMER SERVICE\n");
+									printf("===================================================\n");									
+									printf("Antrian Ke\tNama\n");
+									for(k=n+1;k<=i;k++){
+										printf("     -----------------------------------------\n");
+										printf("\t%d",k);
+										printf("\t%s\n",CSnama[k]);
+										printf("     -----------------------------------------\n");
 									}
-									i=0,n=0,antrianCS=0;
-										printf("\n\n\n\t!!!  ANTRIAN SELESAI  !!!");
-										printf("\n\n\nPress Any Key to continue...");
-										while(!kbhit()); 
-									}
-									fflush(stdin); 
+									printf("\n\n\nPress Any Key to continue...");
+									while(!kbhit()); 
 									system ("cls");
 									break;
 								}
@@ -529,8 +405,9 @@ int main(){
 				}
 				
 				case 3 : {
-					//MENU USER TELLER					
-						while(bil!=4){
+					//MENU USER TELLER	
+					bil=0;				
+						while(bil!=3){
 							printf("\n===================================================\n");
 							printf("\t\tMENU TELLER\n");
 							printf("===================================================\n");
@@ -544,9 +421,8 @@ int main(){
 							printf("\tSisa Antrian Teller  : %d\n",j-m);
 							printf("\t------------------------\n\n");
 							printf("\t1. PANGGIL ANTRIAN\n");	
-							printf("\t2. LIST ANTRIAN\n");					
-							printf("\t3. RESET ANTRIAN\n");
-							printf("\t4. KELUAR\n\n");
+							printf("\t2. LIST ANTRIAN\n");
+							printf("\t3. KELUAR\n\n");
 							printf("---------------------------------------------------\n");
 							printf("\t\nPilihan :  ");
 							scanf("%d",&bil);
@@ -560,6 +436,12 @@ int main(){
 									if(m<j){
 										antrianTL=antrianTL+1;
 										m=m+1;																							
+									}	
+									else if(m==20){
+										printf("\n\n\t!! ANTRIAN SUDAH MENCAPAI BATAS HARIAN !!");
+										printf("\n\n\nPress Any Key to continue...");
+										while(!kbhit());            						
+            							system ("cls");
 									}									
 									else if(m>=j){
 										printf("\n\n\n\t!!!  BELUM ADA ANTRIAN  !!!");
@@ -572,71 +454,19 @@ int main(){
 								}
 								
 								case 2 : {	
-									//LIST ANTRIAN	TL	
-									bil=0;						
-									while(bil!=2){									
-										printf("\n===================================================\n");
-										printf("\t\tLIST ANTRIAN TELLER\n");
-										printf("===================================================\n");									
-										printf("Antrian Ke\tNama\n");
-										for(k=1;k<=j;k++){
-											printf("     -----------------------------------------\n");
-											printf("\t%d",k);
-											printf("\t%s\n",TLnama[k]);
-											printf("     -----------------------------------------\n");
-										}
-										printf("\n\n\nPerintah :");
-										printf("\n\t1. HAPUS ANTRIAN");
-										printf("\n\t2. KEMBALI");	
-										printf("\n\n---------------------------------------------------\n");
-										printf("\t\nPilihan :  ");
-										scanf("%d",&bil);
-										fflush(stdin);	
-										//HAPUS ANTRIAN	TL								
-										if(bil==1){
-											if(j>0){
-												printf("\n\tNo Antrian Yang Akan Dihapus\n");
-												printf("\t\n\tPilihan :  ");
-												scanf("%d",&bil2);		
-												if(bil2<=j){									
-													for(p=bil2;p<j;p++){
-														strcpy(TLnama[p],TLnama[p+1]);
-														strcpy(TLtelepon[p],TLtelepon[p+1]);
-													}
-													strcpy(TLnama[j],reset);
-													if(bil2<=m){
-														m=m-1;		
-														antrianTL=antrianTL-1;									
-													}												
-													j=j-1;											
-													fflush(stdin);	
-												}
-											}
-											system ("cls");	
-										}								
+									//LIST ANTRIAN TELLER																		
+									printf("\n===================================================\n");
+									printf("               LIST ANTRIAN TELLER\n");
+									printf("===================================================\n");									
+									printf("Antrian Ke\tNama\n");
+									for(k=m+1;k<=j;k++){
+										printf("     -----------------------------------------\n");
+										printf("\t%d",k);
+										printf("\t%s\n",TLnama[k]);
+										printf("     -----------------------------------------\n");
 									}
-									bil=0;
-									system ("cls");	
-									break;
-								}
-								
-								case 3 : {	
-								 	//RESET ANTRIAN TL								
-									system ("cls");
-									printf("\n\n\n\tYakin Untuk Me-Reset Antrian? <y/n> ");
-									scanf("%s",&aksi);
-									system ("cls");
-									if(aksi=='y'){
-										for(k=0;k<=j;k++){
-										strcpy(TLnama[k],reset);
-										strcpy(TLtelepon[k],reset);																		
-									}
-									j=0,n=0,antrianTL=0;
-										printf("\n\n\n\t!!!  ANTRIAN SELESAI  !!!");
-										printf("\n\n\nPress Any Key to continue...");
-										while(!kbhit()); 
-									}
-									fflush(stdin); 
+									printf("\n\n\nPress Any Key to continue...");
+									while(!kbhit()); 
 									system ("cls");
 									break;
 								}
